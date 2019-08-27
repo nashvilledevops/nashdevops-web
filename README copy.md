@@ -1,5 +1,4 @@
-# nashdevops-web
-
+# nashvilledevops.github.io
 NashDevOps Web Site
 
 This is the official project to support the NashDevOps.com Website
@@ -9,29 +8,26 @@ NashDevOps is a group for curious individuals that are interested in collaborati
 This project is open sourced and all are invited to contribute.
 
 Join Us at a Meetup:
-
 - [NashDevOps Meetup](https://www.meetup.com/NashDevOps/)
 
 Visit Us on the Web:
-
 - [NashDevOps Website](https://nashdevops.com)
+
 
 ## Getting Started
 
-TLDR;
-NashDevOps.com is a static site build using Jekyll and hosted via GitHub Pages. This Jekyll project utilizes Docker to deliver a consistent build and server environment to support development.
+TLDR; 
+NashDevOps.com is a static site build using Jekyll and hosted via GitHub Pages. This Jekyll project utilizes Docker to deliver a consistent build and server environment to support development. 
 
 ### Learn About Jekyll
 
 See Documentation:
-
 - [Jekyll](https://jekyllrb.com/)
 - [Jekyll - How it Works](https://jekyllrb.com/docs/usage/)
 
 ### Learn About GitHub Pages
 
 See Documentation:
-
 - [GitHub Pages](https://pages.github.com/)
 - [GitHub Pages - Custom Domain](https://help.github.com/en/articles/using-a-custom-domain-with-github-pages)
 - [GitHub Pages - Configure HTTPS](https://help.github.com/en/articles/securing-your-github-pages-site-with-https)
@@ -39,14 +35,12 @@ See Documentation:
 ### Install Docker
 
 See Documentation:
-
 - [Docker](https://www.docker.com/)
 - [Docker - Install](https://docs.docker.com/install/)
 
 ### Pull the Official Jekyll Image
 
 See Documentation:
-
 - [DockerHub](https://hub.docker.com/)
 - [Jekyll Docker Image](https://hub.docker.com/r/jekyll/jekyll)
 - [Jekyll Docker Image - ReadMe](https://github.com/envygeeks/jekyll-docker/blob/master/README.md)
@@ -80,19 +74,21 @@ Example:
     # Run Docker to Build our Jekyll Project
     docker run --rm --volume="$PWD:/srv/jekyll" -it jekyll/jekyll:$JEKYLL_VERSION jekyll build
 
+
 ### Serving the Project (via Docker)
 
 The following commands will serve the Jekyll Project using the Standard Official Docker Image (jekyll/jekyll) at http://0.0.0.0:4000 
 
 Note: When you run the docker command below to serve the project you will need to be at the root of the project directory as the present working directory (i.e. $PWD) is mounted as a volume within the running container.
 
-Example:
+Example: 
 
     # Set the Jekyll Version
     export JEKYLL_VERSION=3.8.6
 
     # Run Docker to Serve our Jekyll Project
     docker run --rm --volume="$PWD:/srv/jekyll" -p 4000:4000 -it jekyll/jekyll:$JEKYLL_VERSION jekyll serve
+
 
 ### Developing the Project (via Docker)
 
@@ -156,3 +152,4 @@ Here is a quick overview of the custom Jekyll Project:
         LICENSE            # Mozilla Public License 2.0 
         README.md          # THE FILE YOU ARE READING NOW
         search.json        # Supports the Search Functionality at /search
+

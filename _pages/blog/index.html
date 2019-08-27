@@ -1,0 +1,104 @@
+---
+layout: page
+title: Blog
+permalink: /blog
+date: 2018-01-01 00:00:00 -0600
+tags: blog template business
+---
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+            <!-- Blog Post -->
+            {% for post in site.posts limit:5 %}
+            <div class="card mb-4">
+                <!-- <img class="card-img-top" src="{{ post.image }}" alt="Card image cap"> -->
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="card-text">{{ post.content | truncatehtml | truncatewords: 45 }}</p>
+                    <a href="{{ post.url }}" class="btn btn-primary">Read More &rarr;</a>
+                </div>
+                <div class="card-footer text-muted">
+                    Posted on {{ post.date}} by {{ post.author }}
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+            <!-- Search Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Search</h5>
+                <div class="card-body">
+                    <div class="input-group">
+                        <input type="text" id="search-input" class="form-control" placeholder="Search for posts...">
+                    </div>
+                    <div style="padding-top: 15px">
+                        <ul id="results-container"></ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Tags Widget -->
+            <!--<div class="card my-4">
+                <h5 class="card-header">Tags</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a href="#">Web Design</a>
+                                </li>
+                                <li>
+                                    <a href="#">HTML</a>
+                                </li>
+                                <li>
+                                    <a href="#">Freebies</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a href="#">JavaScript</a>
+                                </li>
+                                <li>
+                                    <a href="#">CSS</a>
+                                </li>
+                                <li>
+                                    <a href="#">Tutorials</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <!-- Side Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Recent Posts</h5>
+                <div class="card-body">
+                    <ul>
+                        {% for post in site.posts limit:10 %}
+                        <li>
+                            <a href="{{ post.url }}">{{ post.title }}</a>
+                            <!--{{ post.excerpt }}-->
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
