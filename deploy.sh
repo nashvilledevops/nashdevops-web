@@ -10,7 +10,7 @@ docker run --rm --volume="$PWD:/srv/jekyll" -p 4000:4000 -it jekyll/jekyll:$JEKY
 
 echo ""
 echo ""
-echo "Committing Latest Build to github.com/nashvilledevops/nashvilledevops.github.io"
+echo "Committing Latest Build to github.com/nashvilledevops/nashdevops-web"
 git add .
 git commit -m "Committing Latest Site Build - $CURRENT_DATE"
 git push -u origin master
