@@ -12,7 +12,7 @@ echo ""
 echo ""
 echo "Committing Latest Build to github.com/nashvilledevops/nashvilledevops.github.io"
 git add .
-git commit -m "Committing Latest Site Build - $DATE"
+git commit -m "Committing Latest Site Build - $CURRENT_DATE"
 git push -u origin master
 
 echo ""
@@ -20,7 +20,7 @@ echo ""
 echo "Deploying Latest Build to github.com/nashvilledevops/nashvilledevops.github.io"
 cd ./_site
 git add .
-git commit -m "Deploying Latest Site Build - $DATE"
+git commit -m "Deploying Latest Site Build - $CURRENT_DATE"
 git push -u origin master
 
 echo ""
@@ -28,5 +28,5 @@ echo ""
 echo "Final Commit to github.com/nashvilledevops/nashdevops-web"
 cd ../
 git add .
-git commit -m "Committing Final _site Build - $DATE"
+git commit -m "Committing Final _site Build - $CURRENT_DATE"
 git push -u origin master
