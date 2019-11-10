@@ -16,10 +16,21 @@ Visit Us on the Web:
 
 - [NashDevOps Website](https://nashdevops.com)
 
+Visit Us on Github
+
+- [NashDevOps Github](https://github.com/nashvilledevops)
+
 ## Getting Started
 
 TLDR;
-NashDevOps.com is a static site build using Jekyll and hosted via GitHub Pages. This Jekyll project utilizes Docker to deliver a consistent build and server environment to support development.
+NashDevOps.com is a static site build using Jekyll and hosted via GitHub Pages. 
+
+This Jekyll project utilizes Docker to deliver a consistent build and server environment to support development.
+
+There are two repositories that are used to develop and host the site:
+
+- [nashdevops-web](https://github.com/nashvilledevops/nashdevops-web) is used for Development.
+- [nashvilledevops.github.io](https://github.com/nashvilledevops/nashvilledevops.github.io) is used to Host the Site via Github Pages.
 
 ### Learn About Jekyll
 
@@ -64,7 +75,7 @@ Example:
 Example:
 
     # Git Clone Project
-    git clone git@github.com:nashvilledevops/nashvilledevops.github.io.git
+    git clone git@github.com:nashvilledevops/nashdevops-web
 
 ### Building the Project (via Docker)
 
@@ -79,6 +90,9 @@ Example:
 
     # Run Docker to Build our Jekyll Project
     docker run --rm --volume="$PWD:/srv/jekyll" -it jekyll/jekyll:$JEKYLL_VERSION jekyll build
+
+NOTE: There is a deployment script (deploy.sh) in the root of the project that will build the site via Docker, Commit and Push Changes to both the Development Repo and 
+the Github Pages Repo.  
 
 ### Serving the Project (via Docker)
 
@@ -95,6 +109,8 @@ Example:
     docker run --rm --volume="$PWD:/srv/jekyll" -p 4000:4000 -it jekyll/jekyll:$JEKYLL_VERSION jekyll serve
 
 ### Developing the Project (via Docker)
+
+All development and pull-requests should occur in [nashdevops-web](https://github.com/nashvilledevops/nashdevops-web). 
 
 Once the docker container is running you can visit the site at http://0.0.0.0:4000 (see above) and can develop against the Jekyll Project locally and refresh your browser to see the changes.
 
@@ -156,3 +172,50 @@ Here is a quick overview of the custom Jekyll Project:
         LICENSE            # Mozilla Public License 2.0 
         README.md          # THE FILE YOU ARE READING NOW
         search.json        # Supports the Search Functionality at /search
+
+### Building and Deploying the Site
+
+This Jekyll project utilizes Docker to deliver a consistent build and server environment to support development.
+
+There are two repositories that are used to develop and host the site:
+
+- [nashdevops-web](https://github.com/nashvilledevops/nashdevops-web) is used for Development.
+- [nashvilledevops.github.io](https://github.com/nashvilledevops/nashvilledevops.github.io) is used to Host the Site via Github Pages.
+
+To build and deploy the site we are using docker along with git submodules.
+
+There is a deployment script (deploy.sh) in the root of the Project that will:
+
+- Build the jekyll site via Docker to the (_site) directory 
+- It is important to note that the _site directory is mounted in [nashdevops-web](https://github.com/nashvilledevops/nashdevops-web) as a Git Submodule that points to [nashvilledevops.github.io](https://github.com/nashvilledevops/nashvilledevops.github.io).
+- Commit and Push Changes to the Development Repo [nashdevops-web](https://github.com/nashvilledevops/nashdevops-web)
+- Commit and Push Changes to Hosting Repo [nashvilledevops.github.io](https://github.com/nashvilledevops/nashvilledevops.github.io)
+
+
+### Networking Config (Github Pages)
+
+The NashDevOps.com website is hosted via Github Pages using a Custom Domain Configuration
+
+- The Site is Published at https://github.com/nashvilledevops/nashvilledevops.github.io
+- STEP 1: A CNAME Text file must be deployed at the Root of the Project
+- STEP 2: Our Domain must have Address Records pointed to Github Pages
+
+To confirm that our DNS Records are configured properly you can use `nslookup` or `dig`:
+
+    nslookup nashdevops.com
+
+    Name:   nashdevops.com
+    Address: 185.199.108.153
+    Address: 185.199.109.153
+    Address: 185.199.110.153
+    Address: 185.199.111.153
+
+
+    dig NASHDEVOPS.COM +noall +answer
+    ; <<>> DiG 9.10.3-P4-Ubuntu <<>> NASHDEVOPS.COM +noall +answer
+    ;; global options: +cmd
+
+    NASHDEVOPS.COM.         376     IN      A       185.199.108.153
+    NASHDEVOPS.COM.         376     IN      A       185.199.109.153
+    NASHDEVOPS.COM.         376     IN      A       185.199.110.153
+    NASHDEVOPS.COM.         376     IN      A       185.199.111.153
